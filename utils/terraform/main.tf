@@ -1,8 +1,8 @@
 # Management of the GitHub project.
 
-resource "github_repository" "rocksdb-utils-lookup" {
-  name        = "rocksdb-utils-lookup"
-  description = "Utilities for using RocksDB as read-only lookup table (after initial bulk import)"
+resource "github_repository" "tpl-rs" {
+  name        = "tpl-rs"
+  description = "This is a template repository"
 
   has_issues = true
   visibility = "public"
