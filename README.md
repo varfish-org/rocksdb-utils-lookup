@@ -6,6 +6,8 @@
 
 # Helpers for using RocksDB as Lookup Tables
 
+<img src="https://raw.githubusercontent.com/bihealth/rocksdb-utils-lookup/main/utils/dalle-utility-workers-rocking.png" width="256px" height="256px" align="right">
+
 This repository contains helper code that is useful when using RocksDB as a static lookup table (after initial creation).
 
 ## Managing Project with Terraform
