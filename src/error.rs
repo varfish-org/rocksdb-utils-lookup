@@ -1,5 +1,7 @@
 //! Error type definition.
 
+use std::string::FromUtf8Error;
+
 use thiserror::Error;
 
 /// Error type for `rocksdb-utils-lookup`
@@ -20,4 +22,10 @@ pub enum Error {
     /// Problem with directory access or manipulation in WAL removal.
     #[error("problem with directory access/manipulation in WAL removal: {0}")]
     WalRemoval(#[source] std::io::Error),
+    /// The column family "meta" was not found.
+    #[error("column family not found")]
+    UnknownColumnFamily,
+    /// Problem with UTF-8 conversion.
+    #[error("problem with UTF-8 conversion: {0}")]
+    InvalidUtf8(#[source] FromUtf8Error),
 }
