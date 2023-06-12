@@ -231,3 +231,24 @@ mod test {
         Ok(())
     }
 }
+
+/// Function to fetch a meta value as a string from a RocksDB.
+///
+/// # Errors
+///
+/// Returns an error in the case of problems with the RocksDB access.
+pub fn fetch_meta(
+    db: &rocksdb::DBWithThreadMode<rocksdb::MultiThreaded>,
+    key: &str,
+) -> Result<Option<String>, anyhow::Error> {
+    let cf_meta = db
+        .cf_handle("meta")
+        .ok_or(anyhow::anyhow!("unknown column family: meta"))?;
+    let raw_data = db.get_cf(&cf_meta, key.as_bytes())?;
+    raw_data
+        .map(|raw_data| {
+            String::from_utf8(raw_data.to_vec())
+                .map_err(|e| anyhow::anyhow!("problem decoding utf8 (key={}): {}", key, e))
+        })
+        .transpose()
+}
