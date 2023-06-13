@@ -186,11 +186,21 @@ mod test {
 
     use super::*;
 
-    /// Smoke test for the `tune_options` function.
+    /// Smoke test for the `tune_options` function without WAL dir.
     #[test]
-    fn smoke_test_tune_options() -> Result<(), anyhow::Error> {
+    fn smoke_test_tune_options_without_wal_dir() -> Result<(), anyhow::Error> {
         let options = rocksdb::Options::default();
         let _tuned = tune_options(options, None);
+
+        Ok(())
+    }
+
+    /// Smoke test for the `tune_options` function with WAL dir.
+    #[test]
+    fn smoke_test_tune_options_with_wal_dir() -> Result<(), anyhow::Error> {
+        let temp = TempDir::default();
+        let options = rocksdb::Options::default();
+        let _tuned = tune_options(options, Some(format!("{}", temp.display()).as_ref()));
 
         Ok(())
     }
