@@ -179,6 +179,26 @@ where
     Ok(())
 }
 
+/// Function to fetch a meta value as a string from a `RocksDB`.
+///
+/// # Errors
+///
+/// Returns an error in the case of problems with the `RocksDB` access.
+pub fn fetch_meta(
+    db: &rocksdb::DBWithThreadMode<rocksdb::MultiThreaded>,
+    key: &str,
+) -> Result<Option<String>, error::Error> {
+    let cf_meta = db
+        .cf_handle("meta")
+        .ok_or(error::Error::UnknownColumnFamily)?;
+    let raw_data = db
+        .get_cf(&cf_meta, key.as_bytes())
+        .map_err(error::Error::ReadData)?;
+    raw_data
+        .map(|raw_data| String::from_utf8(raw_data).map_err(error::Error::InvalidUtf8))
+        .transpose()
+}
+
 #[allow(clippy::pedantic)]
 #[cfg(test)]
 mod test {
@@ -227,6 +247,22 @@ mod test {
         let db = rocksdb::DB::open_cf(&options, path_db, cf_names)?;
 
         force_compaction_cf(&db, cf_names, Some("msg"), true)?;
+
+        Ok(())
+    }
+
+    /// Smoke test for the `fetch_meta` function.
+    #[test]
+    fn smoke_test_fetch_meta() -> Result<(), anyhow::Error> {
+        let path_db = "tests/data/freqs";
+        let db = rocksdb::DB::open_cf_for_read_only(
+            &rocksdb::Options::default(),
+            path_db,
+            ["meta"],
+            true,
+        )?;
+
+        fetch_meta(&db, "gnomad-release")?;
 
         Ok(())
     }

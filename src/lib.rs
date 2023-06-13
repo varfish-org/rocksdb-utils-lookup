@@ -8,4 +8,4 @@ mod error;
 mod utils;
 
 pub use crate::error::*;
-pub use crate::utils::{force_compaction, force_compaction_cf, tune_options};
+pub use crate::utils::{fetch_meta, force_compaction, force_compaction_cf, tune_options};
