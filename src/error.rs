@@ -19,6 +19,9 @@ pub enum Error {
     /// Problem with acessing RocksDB column family.
     #[error("problem accessing RocksDB column family: {0}")]
     ColumnFamily(String),
+    /// Problem with loading data.
+    #[error("problem reading data from RocksdBB: {0}")]
+    ReadData(#[source] rocksdb::Error),
     /// Problem with directory access or manipulation in WAL removal.
     #[error("problem with directory access/manipulation in WAL removal: {0}")]
     WalRemoval(#[source] std::io::Error),
