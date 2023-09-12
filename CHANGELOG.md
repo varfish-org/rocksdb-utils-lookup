@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/bihealth/rocksdb-utils-lookup/compare/v0.2.0...v0.3.0) (2023-09-12)
+
+
+### Features
+
+* create database with partitioned index ([#9](https://www.github.com/bihealth/rocksdb-utils-lookup/issues/9)) ([#10](https://www.github.com/bihealth/rocksdb-utils-lookup/issues/10)) ([fed4d08](https://www.github.com/bihealth/rocksdb-utils-lookup/commit/fed4d08386d49583aeaf83af2d120131a8b580fd))
+
 ## [0.2.0](https://www.github.com/bihealth/rocksdb-utils-lookup/compare/v0.1.0...v0.2.0) (2023-06-13)
 
 
