@@ -50,7 +50,7 @@ pub fn tune_options(options: rocksdb::Options, wal_dir: Option<&str>) -> rocksdb
     //
     // https://github.com/facebook/rocksdb/wiki/RocksDB-Bloom-Filter
     // https://www.percona.com/blog/how-bloom-filters-work-in-myrocks/
-    block_opts.set_bloom_filter(10.0, false);
+    block_opts.set_ribbon_filter(10.0);
     block_opts.set_partition_filters(true);
     block_opts.set_metadata_block_size(4096);
     block_opts.set_cache_index_and_filter_blocks(true);
