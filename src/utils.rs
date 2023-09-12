@@ -43,6 +43,22 @@ pub fn tune_options(options: rocksdb::Options, wal_dir: Option<&str>) -> rocksdb
     options.set_bottommost_zstd_max_train_bytes(1 << 22, true);
     options.optimize_for_point_lookup(1 << 26);
 
+    // Setup partitioned index filters
+    let mut block_opts = rocksdb::BlockBasedOptions::default();
+    block_opts.set_index_type(rocksdb::BlockBasedIndexType::TwoLevelIndexSearch);
+    // 10 bits per key are a reasonbel default
+    //
+    // https://github.com/facebook/rocksdb/wiki/RocksDB-Bloom-Filter
+    // https://www.percona.com/blog/how-bloom-filters-work-in-myrocks/
+    block_opts.set_bloom_filter(10.0, false);
+    block_opts.set_partition_filters(true);
+    block_opts.set_metadata_block_size(4096);
+    block_opts.set_cache_index_and_filter_blocks(true);
+    block_opts.set_pin_top_level_index_and_filter(true);
+    block_opts.set_pin_l0_filter_and_index_blocks_in_cache(true);
+    // MISSING: cache_index_and_filter_blocks_with_high_priority
+    options.set_block_based_table_factory(&block_opts);
+
     options
 }
 
@@ -103,6 +119,10 @@ where
 /// # Errors
 ///
 /// Returns an error in the case the underlying `RocksDB` operation fails.
+///
+/// # Panics
+///
+/// When there are problems with file system access.
 pub fn force_compaction_cf<I, N>(
     db: &rocksdb::DBWithThreadMode<rocksdb::MultiThreaded>,
     cf_names: I,
