@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://www.github.com/varfish-org/rocksdb-utils-lookup/compare/v0.3.0...v0.4.0) (2024-02-22)
+
+
+### Miscellaneous Chores
+
+* bump version for rocksdb update ([8f6bf0a](https://www.github.com/varfish-org/rocksdb-utils-lookup/commit/8f6bf0a1b09bd819d20a3e4ae8c3bb2277e9510a))
+
 ## [0.3.0](https://www.github.com/bihealth/rocksdb-utils-lookup/compare/v0.2.0...v0.3.0) (2023-09-12)
 
 
