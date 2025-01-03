@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/varfish-org/rocksdb-utils-lookup/compare/v0.4.0...v0.4.1) (2025-01-03)
+
+
+### Bug Fixes
+
+* replace cargo-tarpaulin with cargo-llvm-cov, use system librocksdb ([#19](https://www.github.com/varfish-org/rocksdb-utils-lookup/issues/19)) ([2ed4016](https://www.github.com/varfish-org/rocksdb-utils-lookup/commit/2ed40168df4c1f4166bceb299a5bcf57c4a201cc))
+
 ## [0.4.0](https://www.github.com/varfish-org/rocksdb-utils-lookup/compare/v0.3.0...v0.4.0) (2024-02-22)
 
 
