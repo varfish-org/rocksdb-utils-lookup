@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://www.github.com/varfish-org/rocksdb-utils-lookup/compare/v0.4.1...v0.5.0) (2025-04-16)
+
+
+### Miscellaneous Chores
+
+* bump version for rocksdb update ([4cdcb89](https://www.github.com/varfish-org/rocksdb-utils-lookup/commit/4cdcb89731dfe3b401b93788e77474fc1fb27b78))
+
 ### [0.4.1](https://www.github.com/varfish-org/rocksdb-utils-lookup/compare/v0.4.0...v0.4.1) (2025-01-03)
 
 
