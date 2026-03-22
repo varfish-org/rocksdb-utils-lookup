@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.5.1](https://www.github.com/varfish-org/rocksdb-utils-lookup/compare/v0.5.0...v0.5.1) (2026-03-22)
+
+
+### Bug Fixes
+
+* update rust actions ([#24](https://www.github.com/varfish-org/rocksdb-utils-lookup/issues/24)) ([9f4cac4](https://www.github.com/varfish-org/rocksdb-utils-lookup/commit/9f4cac4e88c1153e45b021454ebfbb32b293fa96))
+
 ## [0.5.0](https://www.github.com/varfish-org/rocksdb-utils-lookup/compare/v0.4.1...v0.5.0) (2025-04-16)
 
 
