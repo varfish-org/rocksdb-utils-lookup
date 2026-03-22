@@ -148,8 +148,9 @@ where
     compact_opt.set_bottommost_level_compaction(rocksdb::BottommostLevelCompaction::Force);
 
     // Start the compaction for each column family.
-    cfs.iter()
-        .for_each(|cf| db.compact_range_cf_opt(cf, None::<&[u8]>, None::<&[u8]>, &compact_opt));
+    for cf in &cfs {
+        db.compact_range_cf_opt(cf, None::<&[u8]>, None::<&[u8]>, &compact_opt);
+    }
     let compaction_start = Instant::now();
     let mut last_logged = compaction_start;
 
