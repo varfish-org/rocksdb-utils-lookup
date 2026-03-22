@@ -16,10 +16,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
-          override: true
           components: rustfmt
 
       - name: Check format
@@ -38,16 +37,13 @@ jobs:
           sudo apt-get install -y librocksdb-dev libsnappy-dev libsqlite3-dev
 
       - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
-          override: true
           components: clippy
 
       - name: Lint with clippy
-        uses: actions-rs/clippy-check@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: cargo clippy --all-features --workspace -- -D warnings
 
   Testing:
     needs: Formatting
@@ -64,10 +60,9 @@ jobs:
           sudo apt-get install -y librocksdb-dev libsnappy-dev libsqlite3-dev
 
       - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
-          override: true
 
       - uses: Swatinem/rust-cache@v2
 
