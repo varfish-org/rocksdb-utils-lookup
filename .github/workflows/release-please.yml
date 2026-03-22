@@ -18,21 +18,19 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
 
       - uses: actions/checkout@v3
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created == 'true' }}
 
       - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
-        if: ${{ steps.release.outputs.release_created }}
+        uses: dtolnay/rust-toolchain@stable
+        if: ${{ steps.release.outputs.release_created == 'true' }}
         with:
           toolchain: stable
-          override: true
 
       - uses: Swatinem/rust-cache@v2
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created == 'true' }}
 
       - name: Publish crate
-        if: ${{ steps.release.outputs.release_created }}
-        uses: actions-rs/cargo@v1
-        with:
-          command: publish
-          args: --token ${{ secrets.CRATES_IO_TOKEN }}
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+        run: cargo publish
