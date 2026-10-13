@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://www.github.com/varfish-org/rocksdb-utils-lookup/compare/v0.5.1...v0.6.0) (2026-10-13)
+
+
+### Miscellaneous Chores
+
+* release v0.6.0 ([16dc1bc](https://www.github.com/varfish-org/rocksdb-utils-lookup/commit/16dc1bcb673cef986f5109ea485a581c26356d96))
+
 ### [0.5.1](https://www.github.com/varfish-org/rocksdb-utils-lookup/compare/v0.5.0...v0.5.1) (2026-03-22)
 
 
